@@ -1,0 +1,46 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Section 1.4 Inversion of Control -->
+    <bean id="bookRepository14" class="com.coherentsolutions.section04.repository.BookRepository"/>
+    <bean id="bookService14" class="com.coherentsolutions.section04.service.BookService">
+        <property name="bookRepository" ref="bookRepository14"/>
+    </bean>
+
+    <!-- Section 1.6 Dependency Injection with the Help of Constructor -->
+    <bean id="bookRepository16" class="com.coherentsolutions.section06.BookRepository"/>
+
+    <bean id="bookService16" class="com.coherentsolutions.section06.BookService">
+        <constructor-arg ref="bookRepository16"/>
+    </bean>
+
+    <!-- Section 1.7 Dependency Injection with the Help of Setter -->
+    <bean id="bookRepository17" class="com.coherentsolutions.section07.BookRepository"/>
+
+    <bean id="bookService17" class="com.coherentsolutions.section07.BookService">
+        <property name="bookRepository" ref="bookRepository17"/>
+    </bean>
+
+    <!-- Section 1.8 Injection of Strings and Other Values -->
+    <bean id="appConfig18" class="com.coherentsolutions.section08.AppConfig">
+        <property name="appName" value="MySpringApp"/>
+        <property name="appVersion" value="5"/>
+        <property name="isDebugMode" value="true"/>
+    </bean>
+
+    <!-- Section 1.9 Injection of Strings and Other Values from Properties File -->
+    <!-- PropertyPlaceholderConfigurer to load properties -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:app.properties"/>
+    </bean>
+
+    <!-- AppConfig bean -->
+    <bean id="appConfig19" class="com.coherentsolutions.section09.AppConfig">
+        <property name="appName" value="${appName}"/>
+        <property name="appVersion" value="${appVersion}"/>
+        <property name="isDebugMode" value="${isDebugMode}"/>
+    </bean>
+
+</beans>

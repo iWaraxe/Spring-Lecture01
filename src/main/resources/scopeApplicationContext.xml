@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Bean definition for PropertyPlaceholderConfigurer -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:app.properties"/>
+    </bean>
+
+    <!-- Singleton scope bean -->
+    <bean id="implicitSingletonService" class="com.coherentsolutions.section11.ImplicitSingletonService"/>
+
+    <!-- Singleton scope bean -->
+    <bean id="singletonService" class="com.coherentsolutions.section11.SingletonService" scope="singleton"/>
+
+    <!-- Prototype scope bean -->
+    <bean id="prototypeService" class="com.coherentsolutions.section11.PrototypeService" scope="prototype"/>
+
+    <!-- Request scope bean (valid in the context of a web application) -->
+    <bean id="requestScopedBean" class="com.coherentsolutions.section11.RequestScopedBean" scope="request"/>
+
+    <!-- Session scope bean (valid in the context of a web application) -->
+    <bean id="sessionScopedBean" class="com.coherentsolutions.section11.SessionScopedBean" scope="session"/>
+
+    <!-- Global session scope bean (valid in the context of a Portlet application) -->
+    <bean id="globalSessionScopedBean" class="com.coherentsolutions.section11.GlobalSessionScopedBean" scope="globalSession"/>
+
+    <!-- AppConfig bean with properties injected from app.properties file -->
+    <bean id="appConfig" class="com.coherentsolutions.section09.AppConfig">
+        <property name="appName" value="${appName}"/>
+        <property name="appVersion" value="${appVersion}"/>
+        <property name="isDebugMode" value="${isDebugMode}"/>
+    </bean>
+
+</beans>

@@ -1,2 +1,7 @@
-package com.coherentsolutions.section05;public class BookRepository {
+package com.coherentsolutions.section05.repository;
+
+public class BookRepository {
+    public void save() {
+        System.out.println("Book saved.");
+    }
 }
